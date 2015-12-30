@@ -1,0 +1,14 @@
+{
+    "name": "AldoZumaran/Uploader",
+    "description": "Upload Files",
+    "require": {
+        "laravel/laravel": "^5.1",
+        "intervention/image": "^2.3"
+    },
+    "authors": [
+        {
+            "name": "Aldo Zumaran",
+            "email": "zumaran.aldo@gmail.com"
+        }
+    ]
+}
