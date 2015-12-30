@@ -11,5 +11,6 @@
             "email": "zumaran.aldo@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "dev",
+    "prefer-stable": "true"
 }
