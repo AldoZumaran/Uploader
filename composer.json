@@ -1,8 +1,8 @@
 {
-    "name": "AldoZumaran/Uploader",
-    "description": "Upload Files",
+    "name": "aldozumaran/uploader",
+    "description": "Laravel Uploader",
     "require": {
-        "laravel/laravel": "^5.1",
+        "laravel/framework": "^5.1",
         "intervention/image": "^2.3"
     },
     "authors": [
@@ -12,5 +12,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable": "true"
+    "autoload": {
+      "psr-4": {
+        "AldoZumaran\\Uploader\\": "src/"
+      }
+    }
 }
