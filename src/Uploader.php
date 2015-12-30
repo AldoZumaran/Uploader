@@ -3,7 +3,6 @@
 namespace AldoZumaran\Uploader;
 
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 
 class Uploader
 {
@@ -96,7 +95,7 @@ class Uploader
                     if ($dim['width'] > $dim['height'])
                         list($dim['width'], $dim['height']) = array($dim['height'], $dim['width']);
 
-                    $original = Image::make($original_dir . $name);
+                    $original = \Intervention\Image\Facades\Image::make($original_dir . $name);
                     $width = $widthT = $original->width();
                     $height = $heightT = $original->height();
 
