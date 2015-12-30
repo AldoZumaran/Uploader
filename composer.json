@@ -10,5 +10,6 @@
             "name": "Aldo Zumaran",
             "email": "zumaran.aldo@gmail.com"
         }
-    ]
+    ],
+    "minimum-stability": "stable"
 }
