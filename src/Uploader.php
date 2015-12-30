@@ -60,6 +60,14 @@ class Uploader
     }
 
 
+    /**
+     * @param $input
+     * @param $dir_name
+     * @param int $id
+     * @param bool $isFile
+     * @param array $valid
+     * @return bool|string
+     */
     public function save($input, $dir_name, $id = 1, $isFile = true, $valid = [])
     {
 
