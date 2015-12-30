@@ -3,6 +3,7 @@
 namespace AldoZumaran\Uploader;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class Uploader
 {
@@ -59,7 +60,7 @@ class Uploader
     }
 
 
-    public function save($input, $dir_name, $id = 1, $isFile = true)
+    public function save($input, $dir_name, $id = 1, $isFile = true, $valid = [])
     {
 
 
@@ -67,7 +68,7 @@ class Uploader
             $file = $this->request->file($input);
             $ext = $file->guessExtension();
 
-            if (!$this->_validator($ext, $isFile))
+            if (!$this->_validator($ext, $isFile, $valid))
                 return false;
 
             $name = $this->_getName($id, $ext);
@@ -95,7 +96,7 @@ class Uploader
                     if ($dim['width'] > $dim['height'])
                         list($dim['width'], $dim['height']) = array($dim['height'], $dim['width']);
 
-                    $original = \Intervention\Image\Facades\Image::make($original_dir . $name);
+                    $original = Image::make($original_dir . $name);
                     $width = $widthT = $original->width();
                     $height = $heightT = $original->height();
 
@@ -210,9 +211,10 @@ class Uploader
      * @param $isfile
      * @return bool
      */
-    private function _validator($ext, $isFile)
+    private function _validator($ext, $isFile, $valid)
     {
-        if ( in_array( $ext, $this->valid[ $isFile ? 'files' : 'images' ] ) )
+        $valid = empty($valid) ? $this->valid[ $isFile ? 'files' : 'images' ] : $valid;
+        if ( in_array( $ext, $valid ) )
             return true;
 
         $this->error = 'Invalid extension: ' . $ext;

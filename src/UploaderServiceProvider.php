@@ -26,7 +26,9 @@ class UploaderServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        App::bind('Uploader', function($app)
+        $this->app->register('Intervention\Image\ImageServiceProvider');
+
+        App::bind('Uploader', function($app )
         {
             return new Uploader($app['request']);
         });
