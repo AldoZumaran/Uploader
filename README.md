@@ -65,28 +65,28 @@ Upload Directory, default "uploads", Uploader creates a directory inside public.
 File and image directories.
 Only for images Uploader creates sizes directories, 
 
-        public/images/thumb
-        public/images/medium
+        public/uploads/images/thumb
+        public/uploads/images/medium
         ...
-        public/images/original - default 
+        public/uploads/images/original - default 
 
 
 ##RANGE
 Every "range" files Uploader creates new subdirectory
 
 
-        public/images/thumb/[CUSTOM_NAME]/0
-        public/images/thumb/[CUSTOM_NAME]/1000
-        public/images/thumb/[CUSTOM_NAME]/2000
+        public/uploads/images/thumb/[CUSTOM_NAME]/0
+        public/uploads/images/thumb/[CUSTOM_NAME]/1000
+        public/uploads/images/thumb/[CUSTOM_NAME]/2000
         ...
-        public/images/medium/[CUSTOM_NAME]/0
-        public/images/medium/[CUSTOM_NAME]/1000
-        public/images/medium/[CUSTOM_NAME]/2000
+        public/uploads/images/medium/[CUSTOM_NAME]/0
+        public/uploads/images/medium/[CUSTOM_NAME]/1000
+        public/uploads/images/medium/[CUSTOM_NAME]/2000
         ...
         
-        public/files/[CUSTOM_NAME]/0
-        public/files/[CUSTOM_NAME]/1000
-        public/files/[CUSTOM_NAME]/2000
+        public/uploads/files/[CUSTOM_NAME]/0
+        public/uploads/files/[CUSTOM_NAME]/1000
+        public/uploads/files/[CUSTOM_NAME]/2000
         ...
 
 # Usage
@@ -115,7 +115,7 @@ Route::post('curriculum', .function(){
     /* Upload mycv.pdf */ 
     $id = \DB::table('curriculums')->count(); // 1540
     $file = Uploader::save("file","curriculum", 1540);
-    // File saved in public/upload/files/curriculum/1000/XXXXX_XXXXXXXXXXXXXXXXX.pdf
+    // File saved in public/uploads/files/curriculum/1000/XXXXX_XXXXXXXXXXXXXXXXX.pdf
     
     echo $file; // XXXXX_XXXXXXXXXXXXXXXXX.pdf
     
@@ -123,7 +123,7 @@ Route::post('curriculum', .function(){
     /* Upload mycv2.jpg */ 
     $id = \DB::table('curriculums')->count(); // 1541
     $file = Uploader::save("file","curriculum", 1541);
-    // File saved in public/upload/files/curriculum/1000/XXXXX_XXXXXXXXXXXXXXXXY.jpg
+    // File saved in public/uploads/files/curriculum/1000/XXXXX_XXXXXXXXXXXXXXXXY.jpg
     
     echo $file; // XXXXX_XXXXXXXXXXXXXXXXY.pdf
 });
@@ -136,9 +136,9 @@ Route::post('avatar', .function(){
     $id = \DB::table('avatars')->count(); // 39
     $file = Uploader::save("avatar","avatars", 39,false,['jpg']); // upload only jpg files
     // Images saved in 
-    //public/upload/images/thumb/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg // 500x150
-    //public/upload/images/medium/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg // 1000x300
-    //public/upload/images/original/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg // 1000x300
+    //public/uploads/images/thumb/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg // 500x150
+    //public/uploads/images/medium/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg // 1000x300
+    //public/uploads/images/original/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg // 1000x300
     
     echo $file; // XXXXX_XXXXXXXXXXXXXXXXX.jpg
     
@@ -165,9 +165,9 @@ Route::get('avatar', .function(){
      * @return string
      */
     $file = Uploader::getUrl(39,'avatars','XXXXX_XXXXXXXXXXXXXXXXX.jpg',false,'thumb')
-    echo $file; // http://example.com/upload/images/thumb/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg
+    echo $file; // http://example.com/uploads/images/thumb/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg
     
     $file = Uploader::getUrl(39,'avatars','XXXXX_XXXXXXXXXXXXXXXXX.jpg',false,'medium')
-    echo $file; // http://example.com/upload/images/medium/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg
+    echo $file; // http://example.com/uploads/images/medium/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg
 });
 ```
