@@ -141,6 +141,12 @@ Route::post('avatar', .function(){
     //public/upload/images/original/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg // 1000x300
     
     echo $file; // XXXXX_XXXXXXXXXXXXXXXXX.jpg
+    
+    /* Upload myavatar.png 1000x300*/ 
+    $id = \DB::table('avatars')->count(); // 40
+    $file = Uploader::save("avatar","avatars", 40,false,['jpg']); // upload only jpg files
+    if (!$file)
+        echo Uploader::error(); // Invalid extension: png
 });
 
 ```
@@ -158,10 +164,10 @@ Route::get('avatar', .function(){
      * @param string $format //url,path - default:url
      * @return string
      */
-    $file = Uploader::getUrl(39,'avatars','XXXXX_XXXXXXXXXXXXXXXXX.pdf',false,'thumb')
+    $file = Uploader::getUrl(39,'avatars','XXXXX_XXXXXXXXXXXXXXXXX.jpg',false,'thumb')
     echo $file; // http://example.com/upload/images/thumb/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg
     
-    $file = Uploader::getUrl(39,'avatars','XXXXX_XXXXXXXXXXXXXXXXX.pdf',false,'medium')
+    $file = Uploader::getUrl(39,'avatars','XXXXX_XXXXXXXXXXXXXXXXX.jpg',false,'medium')
     echo $file; // http://example.com/upload/images/medium/avatars/0/XXXXX_XXXXXXXXXXXXXXXXX.jpg
 });
 ```
