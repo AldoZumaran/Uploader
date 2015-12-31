@@ -5,6 +5,10 @@ namespace AldoZumaran\Uploader;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
+/**
+ * Class Uploader
+ * @package AldoZumaran\Uploader
+ */
 class Uploader
 {
     /**
@@ -157,7 +161,16 @@ class Uploader
 
     }
 
-    public function getUrl($id, $dir_name, $name = '', $isFile = true, $size = 'no_dir', $format = 'public')
+    /**
+     * @param $id
+     * @param $dir_name
+     * @param string $name
+     * @param bool|true $isFile
+     * @param string $size
+     * @param string $format
+     * @return string
+     */
+    public function getUrl($id, $dir_name, $name = '', $isFile = true, $size = 'no_dir', $format = 'url')
     {
         $range = config("uploader.range", 1000);
         $dirRange = floor($id / $range) * $range;
@@ -167,7 +180,7 @@ class Uploader
 
         switch ($format) {
             default:
-            case 'public':
+            case 'url':
                 return asset($dir);
                 break;
             case 'path':
