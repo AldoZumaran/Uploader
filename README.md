@@ -143,7 +143,11 @@ Route::post('avatar', .function(){
     echo $file; // XXXXX_XXXXXXXXXXXXXXXXX.jpg
 });
 
+```
+#Get Url
 
+```
+<?php
 Route::get('avatar', .function(){
     /**
      * @param $id
